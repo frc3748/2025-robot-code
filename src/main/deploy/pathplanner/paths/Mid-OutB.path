@@ -1,0 +1,74 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 0.7426336086361384,
+        "y": 4.430877663653311
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.495508288762723,
+        "y": 2.697479368861467
+      },
+      "isLocked": false,
+      "linkedName": "MidB-N3"
+    },
+    {
+      "anchor": {
+        "x": 5.026349144358074,
+        "y": 3.7768428303165438
+      },
+      "prevControl": {
+        "x": 3.2356109314828365,
+        "y": 2.6780029835267265
+      },
+      "nextControl": {
+        "x": 6.008665340854087,
+        "y": 4.379615570126301
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.656750402468776,
+        "y": 4.080302727627994
+      },
+      "prevControl": {
+        "x": 6.5504072484117,
+        "y": 4.059814891441753
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.0,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 2.5,
+    "maxAcceleration": 2.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": null,
+  "previewStartingState": {
+    "rotation": -59.57421619803873,
+    "velocity": 0
+  },
+  "useDefaultConstraints": false
+}

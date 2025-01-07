@@ -1,0 +1,34 @@
+package frc.robot.Subsystems;
+
+import com.ctre.phoenix.sensors.PigeonIMU;
+import com.kauailabs.navx.frc.AHRS;
+import com.kauailabs.navx.frc.AHRS.SerialDataType;
+
+import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.filter.LinearFilter;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.SerialPort.Port;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+public class Gyro {
+    // double offset = 0;
+    AHRS navxAHRS = new AHRS(Port.kUSB1, SerialDataType.kProcessedData, (byte) 50);
+    LinearFilter filter = LinearFilter.movingAverage(2);
+    public Gyro(int CANID){
+        zero();
+        navxAHRS.resetDisplacement();
+    }
+    public Rotation2d getAngle(){
+        return Rotation2d.fromDegrees(
+            MathUtil.inputModulus(filter.calculate(-navxAHRS.getYaw()), 0, 360)
+            );
+    }
+
+    public void testNavX(){
+        SmartDashboard.putNumber("NAVx Test Angle", getAngle().getDegrees());
+    }
+    public void zero(){
+        navxAHRS.zeroYaw();
+        System.out.println("YAW Zeroed!!!!!!!");
+    }
+}
