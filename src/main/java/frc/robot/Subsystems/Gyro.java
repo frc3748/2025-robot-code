@@ -1,9 +1,5 @@
 package frc.robot.Subsystems;
 
-import com.ctre.phoenix.sensors.PigeonIMU;
-// import com.kauailabs.navx.frc.AHRS;
-// import com.kauailabs.navx.frc.AHRS.SerialDataType;
-
 import com.studica.frc.AHRS;
 import com.studica.frc.AHRS.NavXComType;
 

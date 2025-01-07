@@ -5,25 +5,11 @@
 package frc.robot;
 
 
-import javax.print.attribute.standard.MediaSize.NA;
-
-import com.fasterxml.jackson.core.sym.Name;
-import com.pathplanner.lib.auto.NamedCommands;
-
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Notifier;
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Commands.DriveManual;
 import frc.robot.Commands.FollowPath;
-import frc.robot.Subsystems.PhotonVision;
 import frc.robot.Subsystems.Drivetrain.Drive;
 import frc.robot.Commands.AimAtSpeaker;
 
