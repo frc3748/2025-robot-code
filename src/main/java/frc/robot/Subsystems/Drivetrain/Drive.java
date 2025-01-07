@@ -85,15 +85,6 @@ public class Drive implements IDriveIO, Subsystem, Sendable{
             new Pose2d(0, 0, Rotation2d.fromDegrees(0)),
             VecBuilder.fill(.05, .05, Units.degreesToRadians(.1)),
             VecBuilder.fill(2, 2, Units.degreesToRadians(10)));
-
-        // Configure Auto Builder for PathPlanner
-        // HolonomicPathFollowerConfig HPathFollowerConfig = new HolonomicPathFollowerConfig(
-        //     Constants.Auto.xyController, 
-        //     Constants.Auto.thetaController, 
-        //     Constants.Auto.maxDriveSpeed, 
-        //     Constants.Module.frRadius.getNorm(), 
-        //     new ReplanningConfig()
-        // );
         
 
         AutoBuilder.configure(
@@ -184,7 +175,7 @@ public class Drive implements IDriveIO, Subsystem, Sendable{
             if(poseDistance > 1){
                 return;
             }
-            // double distance = PhotonVision.getDistanceFromClosestTag();
+            //double distance = PhotonVision.getDistanceFromClosestTag();
             Pose3d pose = PhotonVision.pose.estimatedPose;
             
             SmartDashboard.putNumberArray("VisionPose", new double[]{pose.getX(), pose.getY(), pose.getRotation().toRotation2d().getDegrees()});

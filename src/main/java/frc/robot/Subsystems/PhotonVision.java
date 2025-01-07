@@ -45,7 +45,7 @@ public class PhotonVision implements Sendable {
         
         try {
             aprilTagFieldLayout = AprilTagFieldLayout.loadFromResource(AprilTagFields.k2024Crescendo.m_resourceFile);
-            photonPoseEstimator = new PhotonPoseEstimator(aprilTagFieldLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, camera, robotToCam);
+            photonPoseEstimator = new PhotonPoseEstimator(aprilTagFieldLayout, PoseStrategy.MULTI_TAG_PNP_ON_COPROCESSOR, robotToCam);
         } catch (Exception e) {
             DriverStation.reportError(e.getMessage(), e.getStackTrace());
         }
@@ -60,7 +60,8 @@ public class PhotonVision implements Sendable {
         if (photonPoseEstimator == null){
             return null;
         }
-        EstimatedRobotPose currentPose = photonPoseEstimator.update().orElse(null);
+        EstimatedRobotPose currentPose = photonPoseEstimator.update(null).orElse(null);
+     
         if(currentPose == null){
             return pose;
         }

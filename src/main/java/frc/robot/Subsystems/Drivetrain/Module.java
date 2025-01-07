@@ -61,6 +61,8 @@ public class Module implements IModuleIO, Subsystem, Sendable {
         boolean flipDrive,
         String modID
     ){
+        
+        //Drive motor config
         driveMotor =  new SparkMax(driveID, MotorType.kBrushless);
         driveConfig = new SparkMaxConfig();
         drivePID = driveMotor.getClosedLoopController();
@@ -81,8 +83,7 @@ public class Module implements IModuleIO, Subsystem, Sendable {
 
         driveMotor.configure(driveConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
-
-
+        //turn motor config
         turnMotor =  new SparkMax(turnID, MotorType.kBrushless);
         turnConfig = new SparkMaxConfig();
         turnAbsEncoder = turnMotor.getAbsoluteEncoder();
@@ -101,13 +102,9 @@ public class Module implements IModuleIO, Subsystem, Sendable {
             .positionWrappingEnabled(true)
             .positionWrappingMaxInput(360)
             .positionWrappingMinInput(0);
-
-
     
         turnMotor.configure(turnConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-        // For some reason, this causes motors to stall ??
-        // turnMotor.restoreFactoryDefaults();
-        // driveMotor.restoreFactoryDefaults();
+
         turnMotor.clearFaults();
         driveMotor.clearFaults();
 
@@ -117,17 +114,7 @@ public class Module implements IModuleIO, Subsystem, Sendable {
         // driveMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus5, 20);        
         // turnMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus5, 20);
 
-
-
-       
-
-
-        
-
-        //turnPID.setFeedbackDevice(turnAbsEncoder);
         this.angleOffset = Units.rotationsToDegrees(angleOffset);
-
-        
 
         this.radius = radius;
 
@@ -224,22 +211,32 @@ public class Module implements IModuleIO, Subsystem, Sendable {
     public void stopTurnMotor(){
         this.turnMotor.stopMotor();
     }
+
     public void stopDriveMotor(){
         this.driveMotor.stopMotor();
     }
+    
     public void stop(){
         this.stopDriveMotor();
         this.stopTurnMotor();
     }
 
-    public double getDriveDistance(){ return states.currentDistanceM; }
-    public double getDriveSpeed(){ return states.currentSpeedMpS; }
+    public double getDriveDistance(){ 
+        return states.currentDistanceM; 
+    }
+
+    public double getDriveSpeed(){ 
+        return states.currentSpeedMpS; 
+    }
+
     public Rotation2d getAngle(){
         double degrees = MathUtil.inputModulus(turnAbsEncoder.getPosition() - angleOffset, 0, 360);
         return Rotation2d.fromDegrees(degrees);
     }
-    public Rotation2d getTargetAngle(){ return Rotation2d.fromDegrees(states.targetAngleDeg); }
 
+    public Rotation2d getTargetAngle(){ 
+        return Rotation2d.fromDegrees(states.targetAngleDeg); 
+    }
 
     public void initSendable(SendableBuilder builder) {
         builder.setSmartDashboardType("GeneralSubsystem");
