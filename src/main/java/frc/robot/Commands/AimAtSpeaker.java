@@ -2,10 +2,7 @@ package frc.robot.Commands;
 
 import java.util.Set;
 
-import org.opencv.core.Mat;
-
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -16,7 +13,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Subsystems.Drivetrain.Drive;
-import frc.robot.Subsystems.PhotonVision;
 
 public class AimAtSpeaker extends Command{
     
