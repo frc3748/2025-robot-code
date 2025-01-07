@@ -96,7 +96,7 @@ public class Module implements IModuleIO, Subsystem, Sendable {
             .positionConversionFactor(360)
             .velocityConversionFactor(60);
         turnConfig.closedLoop
-           // .feedbackSensor(turnAbsEncoder)
+            .feedbackSensor(FeedbackSensor.kAbsoluteEncoder)
             .pidf(Constants.Module.turnPIDGains[0], Constants.Module.turnPIDGains[1], Constants.Module.turnPIDGains[2], Constants.Module.turnPIDGains[3])
             .positionWrappingEnabled(true)
             .positionWrappingMaxInput(360)
@@ -114,8 +114,8 @@ public class Module implements IModuleIO, Subsystem, Sendable {
 
 
         // Make sure Absolute encoder data is up to date
-        driveMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus5, 20);        
-        turnMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus5, 20);
+        // driveMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus5, 20);        
+        // turnMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus5, 20);
 
 
 
@@ -124,7 +124,7 @@ public class Module implements IModuleIO, Subsystem, Sendable {
 
         
 
-        turnPID.setFeedbackDevice(turnAbsEncoder);
+        //turnPID.setFeedbackDevice(turnAbsEncoder);
         this.angleOffset = Units.rotationsToDegrees(angleOffset);
 
         

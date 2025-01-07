@@ -22,5 +22,4 @@ public interface IModuleIO {
     }
 
     public ModuleStatesAutoLogged updateStates(ModuleStatesAutoLogged _states);
-    //public default void updateStates(ModuleStates _states) {}
 }

@@ -9,8 +9,7 @@ import org.photonvision.EstimatedRobotPose;
 import org.photonvision.proto.Photon;
 
 import com.pathplanner.lib.auto.AutoBuilder;
-//import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
-//import com.pathplanner.lib.util.ReplanningConfig;
+
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
@@ -145,7 +144,7 @@ public class Drive implements IDriveIO, Subsystem, Sendable{
         };
         states.odomPoses = _odomPose;
 
-        states.recievedNewControls = DriverStation.isNewControlData();
+        //states.recievedNewControls = DriverStation.isNewControlData();
     }
     public void SetFieldSpeeds(ChassisSpeeds fieldSpeeds){
         ChassisSpeeds robotSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(fieldSpeeds, gyro.getAngle());
@@ -284,6 +283,5 @@ public class Drive implements IDriveIO, Subsystem, Sendable{
         builder.addDoubleProperty("PoseY", () -> states.odomPoses[1], null);
         builder.addDoubleProperty("SpeedX", () -> getChassisSpeeds().vxMetersPerSecond, null);
         builder.addDoubleProperty("SpeedY", () -> getChassisSpeeds().vyMetersPerSecond, null);
-        builder.addDoubleArrayProperty("autAngle", () -> NonlinearArmSolver.getPivotPosition(this::getPose), null);
     }
 }
