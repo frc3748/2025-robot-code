@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Constants;
 
 public class Module implements IModuleIO, Subsystem, Sendable {
+    // Just a PID / Motor controller for each wheel
     private static int numModTracker = 0;
     
     SparkMax driveMotor;

@@ -23,6 +23,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Subsystems.Drivetrain.Drive;
 
 public class PhotonVision implements Sendable {
+    // A sendable can send their state to the dashboard (.putNumber or .putData), we are making the PhotonVision loggable
+    // Documentation (https://docs.wpilib.org/en/stable/docs/software/telemetry/robot-telemetry-with-sendable.html#what-is-sendable)
+
+    //Documentation for PhotonVision (https://javadocs.photonvision.org/)
     static PhotonCamera camera;
     static public EstimatedRobotPose pose;
     static Transform3d robotToCam;
@@ -94,6 +98,7 @@ public class PhotonVision implements Sendable {
             return Double.valueOf(min);
     }
 
+    // sends the data to log ?
     @Override
     public void initSendable(SendableBuilder builder) {
         Pose2d pose = getPose().estimatedPose.toPose2d();

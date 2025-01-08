@@ -49,6 +49,11 @@ public class AimAtSpeaker extends Command{
         double angle;
         Pose2d speakerPos;
         
+        // Documentation on Alliance station (https://docs.wpilib.org/en/stable/docs/software/basic-programming/alliancecolor.html)
+        // this basically stores the position where speakers were at the battle of baltimore
+        // for the coral reef one, I think we should set a central point for both team Red and team Blue
+        // afterwards, we can manually put offsets for each reef holder, offset for the ball
+        // we can copy the same logic for the new "speakers" where we will put the balls in, just change the position
         var alliance = DriverStation.getAlliance();
         if (alliance.isPresent()) {
             if (alliance.get() == DriverStation.Alliance.Red) {

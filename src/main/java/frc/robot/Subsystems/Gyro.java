@@ -9,6 +9,8 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Gyro {
+    // Documentation (https://pdocs.kauailabs.com/navx-mxp/examples/rotate-to-angle-2/)??
+   
     // double offset = 0;
     AHRS navxAHRS = new AHRS(NavXComType.kUSB1, (byte) 50);
     LinearFilter filter = LinearFilter.movingAverage(2);
