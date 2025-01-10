@@ -88,16 +88,16 @@ public class Robot extends LoggedRobot {
     // docs (https://limelightlib-wpijava-reference.limelightvision.io/frc/robot/package-summary.html)
     String limelightName = "limelight";
 
-    double tx = LimelightHelpers.getTX(limelightName);  // Horizontal offset from crosshair to target in degrees
-    double ty = LimelightHelpers.getTY(limelightName);  // Vertical offset from crosshair to target in degrees
-    double ta = LimelightHelpers.getTA(limelightName);  // Target area (0% to 100% of image)
-    boolean hasTarget = LimelightHelpers.getTV(limelightName); // Do you have a valid target?
+    // double tx = LimelightHelpers.getTX(limelightName);  // Horizontal offset from crosshair to target in degrees
+    // double ty = LimelightHelpers.getTY(limelightName);  // Vertical offset from crosshair to target in degrees
+    // double ta = LimelightHelpers.getTA(limelightName);  // Target area (0% to 100% of image)
+    // boolean hasTarget = LimelightHelpers.getTV(limelightName); // Do you have a valid target?
 
-    double txnc = LimelightHelpers.getTXNC(limelightName);  // Horizontal offset from principal pixel/point to target in degrees
-    double tync = LimelightHelpers.getTYNC(limelightName);  // Vertical  offset from principal pixel/point to target in degrees
+    // double txnc = LimelightHelpers.getTXNC(limelightName);  // Horizontal offset from principal pixel/point to target in degrees
+    // double tync = LimelightHelpers.getTYNC(limelightName);  // Vertical  offset from principal pixel/point to target in degrees
 
 
-    if !(hasTarget) {return}
+    // if !(hasTarget) {return}
     
     // LimelightHelpers.setPipelineIndex("", 0);
     // You can switch pipeline, so we can utilize different piplies for specific purpose
@@ -106,16 +106,25 @@ public class Robot extends LoggedRobot {
   
 
     // method above is from 2019 + adapted
-    LimelightHelpers.LimelightResults results = LimelightHelpers.getLatestResults(limelightName);
-    if (!results.error || !results.error.matches("")) {return} // no error?
+    // LimelightHelpers.LimelightResults results = LimelightHelpers.getLatestResults(limelightName);
+    // if (!results.error || !results.error.matches("")) {return} // no error?
 
-    System.out.println(results.pipelineID);
-    System.out.println(results.botpose);
+    // System.out.println(results.pipelineID);
+    // System.out.println(results.botpose);
 
     // they renamed fiducial to april tag (they the same)
-    LimelightHelpers.LimelightTarget_Fiducial aprilTagTargetResults = results.targets_Fiducials;
-    // think we loop thru this
+    RawFiducial[] aprilTagTargetResults = LimelightHelpers.getRawFiducials(limelightName);
 
+    for (RawFiducial data: aprilTagTargetResults) {
+      System.out.println(data.id); // would print 7
+      System.out.println(data.txnc) // horizontal offset from the camera in degrees
+      System.out.println(data.tync) // vertical
+      System.out.println(data.ta) // Target area (0-100% of image)
+      System.out.println(data.distToCamera)
+      System.out.println(data.distToRobot) // robot to tag
+    }
+
+    // https://docs.limelightvision.io/docs/docs-limelight/apis/limelight-lib#target-data
     // docs (https://limelightlib-wpijava-reference.limelightvision.io/frc/robot/LimelightHelpers.LimelightTarget_Fiducial.html)
   }
 
