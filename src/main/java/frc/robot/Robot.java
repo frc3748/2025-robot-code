@@ -83,7 +83,41 @@ public class Robot extends LoggedRobot {
   }
 
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    // Testing Lime Light
+    // docs (https://limelightlib-wpijava-reference.limelightvision.io/frc/robot/package-summary.html)
+    String limelightName = "limelight";
+
+    double tx = LimelightHelpers.getTX(limelightName);  // Horizontal offset from crosshair to target in degrees
+    double ty = LimelightHelpers.getTY(limelightName);  // Vertical offset from crosshair to target in degrees
+    double ta = LimelightHelpers.getTA(limelightName);  // Target area (0% to 100% of image)
+    boolean hasTarget = LimelightHelpers.getTV(limelightName); // Do you have a valid target?
+
+    double txnc = LimelightHelpers.getTXNC(limelightName);  // Horizontal offset from principal pixel/point to target in degrees
+    double tync = LimelightHelpers.getTYNC(limelightName);  // Vertical  offset from principal pixel/point to target in degrees
+
+
+    if !(hasTarget) {return}
+    
+    // LimelightHelpers.setPipelineIndex("", 0);
+    // You can switch pipeline, so we can utilize different piplies for specific purpose
+
+    // Target is present??
+  
+
+    // method above is from 2019 + adapted
+    LimelightHelpers.LimelightResults results = LimelightHelpers.getLatestResults(limelightName);
+    if (!results.error || !results.error.matches("")) {return} // no error?
+
+    System.out.println(results.pipelineID);
+    System.out.println(results.botpose);
+
+    // they renamed fiducial to april tag (they the same)
+    LimelightHelpers.LimelightTarget_Fiducial aprilTagTargetResults = results.targets_Fiducials;
+    // think we loop thru this
+
+    // docs (https://limelightlib-wpijava-reference.limelightvision.io/frc/robot/LimelightHelpers.LimelightTarget_Fiducial.html)
+  }
 
   @Override
   public void teleopExit() {}
