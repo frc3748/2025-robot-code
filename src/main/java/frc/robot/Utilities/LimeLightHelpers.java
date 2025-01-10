@@ -1,21 +1,6 @@
 //LimelightHelpers v1.9 (REQUIRES 2024.9.1)
 
-package frc.robot;
-
-import edu.wpi.first.networktables.DoubleArrayEntry;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.networktables.TimestampedDoubleArray;
-import frc.robot.LimelightHelpers.LimelightResults;
-import frc.robot.LimelightHelpers.PoseEstimate;
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Pose3d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Translation3d;
-import edu.wpi.first.math.util.Units;
-import edu.wpi.first.math.geometry.Rotation3d;
-import edu.wpi.first.math.geometry.Translation2d;
+package frc.robot.Utilities;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -23,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
@@ -30,9 +16,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.concurrent.ConcurrentHashMap;
 
-public class LimelightHelpers {
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.networktables.DoubleArrayEntry;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.TimestampedDoubleArray;
+
+public class LimeLightHelpers {
 
     private static final Map<String, DoubleArrayEntry> doubleArrayEntries = new ConcurrentHashMap<>();
 
@@ -560,7 +558,7 @@ public class LimelightHelpers {
     }
 
     private static PoseEstimate getBotPoseEstimate(String limelightName, String entryName) {
-        DoubleArrayEntry poseEntry = LimelightHelpers.getLimelightDoubleArrayEntry(limelightName, entryName);
+        DoubleArrayEntry poseEntry = LimeLightHelpers.getLimelightDoubleArrayEntry(limelightName, entryName);
         
         TimestampedDoubleArray tsValue = poseEntry.getAtomic();
         double[] poseArray = tsValue.value;
@@ -604,8 +602,8 @@ public class LimelightHelpers {
         return new PoseEstimate(pose, adjustedTimestamp, latency, tagCount, tagSpan, tagDist, tagArea, rawFiducials);
     }
 
-    private static RawFiducial[] getRawFiducials(String limelightName) {
-        var entry = LimelightHelpers.getLimelightNTTableEntry(limelightName, "rawfiducials");
+    public static RawFiducial[] getRawFiducials(String limelightName) {
+        var entry = LimeLightHelpers.getLimelightNTTableEntry(limelightName, "rawfiducials");
         var rawFiducialArray = entry.getDoubleArray(new double[0]);
         int valsPerEntry = 7;
         if (rawFiducialArray.length % valsPerEntry != 0) {
@@ -632,7 +630,7 @@ public class LimelightHelpers {
     }
 
     public static RawDetection[] getRawDetections(String limelightName) {
-        var entry = LimelightHelpers.getLimelightNTTableEntry(limelightName, "rawdetections");
+        var entry = LimeLightHelpers.getLimelightNTTableEntry(limelightName, "rawdetections");
         var rawDetectionArray = entry.getDoubleArray(new double[0]);
         int valsPerEntry = 11;
         if (rawDetectionArray.length % valsPerEntry != 0) {
@@ -1242,7 +1240,7 @@ public class LimelightHelpers {
     public static LimelightResults getLatestResults(String limelightName) {
 
         long start = System.nanoTime();
-        LimelightHelpers.LimelightResults results = new LimelightHelpers.LimelightResults();
+        LimeLightHelpers.LimelightResults results = new LimeLightHelpers.LimelightResults();
         if (mapper == null) {
             mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         }
