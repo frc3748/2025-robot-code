@@ -12,6 +12,7 @@ import frc.robot.Commands.DriveManual;
 import frc.robot.Commands.FollowPath;
 import frc.robot.Subsystems.Drivetrain.Drive;
 import frc.robot.Commands.AimAtSpeaker;
+import frc.robot.Commands.AimAtTag;
 
 public class RobotContainer {
   Timer timer = new Timer();
@@ -24,6 +25,7 @@ public class RobotContainer {
  
   
   public AimAtSpeaker speakerAimer = new AimAtSpeaker(drive);
+  public AimAtTag test = new AimAtTag(drive);
 
  
 
@@ -32,7 +34,8 @@ public class RobotContainer {
     
     // Log telemetry to SmartDashboard and Shuffleboard
     drive.log();
-    drive.setDefaultCommand(teleopDriveCmd);
+   // drive.setDefaultCommand(teleopDriveCmd);
+   drive.setDefaultCommand(test);
     
   
     
