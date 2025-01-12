@@ -87,7 +87,6 @@ public class Robot extends LoggedRobot {
   public void teleopPeriodic() {
     // Testing Lime Light
     // docs (https://limelightlib-wpijava-reference.limelightvision.io/frc/robot/package-summary.html)
-    String limelightName = "limelight";
 
     // double tx = LimelightHelpers.getTX(limelightName);  // Horizontal offset from crosshair to target in degrees
     // double ty = LimelightHelpers.getTY(limelightName);  // Vertical offset from crosshair to target in degrees
@@ -114,16 +113,7 @@ public class Robot extends LoggedRobot {
     // System.out.println(results.botpose);
 
     // they renamed fiducial to april tag (they the same)
-    LimeLightHelpers.RawFiducial[] aprilTagTargetResults = LimeLightHelpers.getRawFiducials(limelightName);
-
-    for (LimeLightHelpers.RawFiducial data: aprilTagTargetResults) {
-      System.out.println(data.id); // would print 7
-      System.out.println(data.txnc); // horizontal offset from the camera in degrees
-      System.out.println(data.tync); // vertical
-      System.out.println(data.ta); // Target area (0-100% of image)
-      System.out.println(data.distToCamera);
-      System.out.println(data.distToRobot); // robot to tag
-    }
+    
 
     // https://docs.limelightvision.io/docs/docs-limelight/apis/limelight-lib#target-data
     // docs (https://limelightlib-wpijava-reference.limelightvision.io/frc/robot/LimelightHelpers.LimelightTarget_Fiducial.html)

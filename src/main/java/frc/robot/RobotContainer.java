@@ -8,6 +8,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Commands.DriveManual;
 import frc.robot.Commands.FollowPath;
 import frc.robot.Subsystems.Drivetrain.Drive;
@@ -46,7 +47,7 @@ public class RobotContainer {
 
   private void configureBindings() {
     
-    // new Trigger(() -> joyDrive.getRawButton(6)).debounce(.1).onTrue(speakerAimer);
+    new Trigger(() -> joyDrive.getRawButton(6)).debounce(.1).onTrue(test);
 
   }
   private void configureNamedCommands(){
